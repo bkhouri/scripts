@@ -1,0 +1,75 @@
+#alias screwyouit='curl --proxy-user bkhouri:ScrewYouIT --user bkhouri:ScrewYouIT --url http://www.google.com'
+alias screwyouit='wget --http-user bkhouri --http-password screwyouit http://www.google.com && rm index.html'
+#alias killtest='adb root && adb wait-for-device && adb shell kill $(adb shell ps | grep test | awk "{print $2}")'
+alias killtest='set -x && adb root && adb wait-for-device && adb shell kill $(adb shell ps | grep test | awk "{print $2}") && set +x'
+
+alias uninstall_3rd_party_app='for f in $(adb shell pm list package -3); do APP="$(echo $f | cut -c9-)"; set -x; adb uninstall ${APP%?}; set +x; done'
+
+alias ride="python-32 /usr/local/bin/ride.py &"
+#alias cdapim="cd /Users/bkhouri/Documents/git/a-prototype"
+#alias cdpim="cd /Users/bkhouri/Documents/git/pim-all"
+alias cdgit="cd /Users/bkhouri/Documents/git/"
+
+alias cdapim="cd /Users/bkhouri/Documents/git/avengers/pim"
+alias cdpim="cd /Users/bkhouri/Documents/git/avengers/pim"
+alias cdinfrastructure="cd /Users/bkhouri/Documents/git/avengers/infrastructure"
+alias cdbbci="cd /Users/bkhouri/Documents/git/avengers/infrastructure"
+
+
+alias ls="ls -G"
+alias ll="ls -alG"
+
+alias grep="grep --color=auto"           # show differences in color
+alias egrep="egrep --color=auto"         # show differences in color
+alias fgrep="fgrep --color=auto"         # show differences in color
+
+
+alias labmaster="ssh slave@10.133.202.90"
+alias atemaster01="ssh slave@10.133.202.89"
+
+alias ate-hyd-linux001="ssh slave@10.158.136.227"
+alias ate-hyd-linux002="ssh slave@10.158.136.79"
+alias ate-hyd-linux002="ssh slave@10.158.139.172"
+alias ate-hyd-linux004="ssh slave@10.158.139.206"
+alias ate-hyd-linux005="ssh slave@10.158.136.227"
+alias ate-hyd-linux006="ssh slave@10.158.136.87"
+
+alias ate-ott-linux001="ssh slave@10.133.202.153"
+alias ate-ott-linux002="ssh slave@10.133.202.154"
+alias ate-ott-linux003="ssh slave@10.133.202.155"
+alias ate-ott-linux004="ssh slave@10.133.202.170"
+alias ate-ott-linux005="ssh slave@10.133.202.85"
+alias ate-ott-linux006="ssh slave@10.133.202.81"
+alias ate-ott-linux007="ssh slave@10.133.202.158"
+alias ate-ott-linux008="ssh slave@10.133.202.87"
+alias ate-ott-linux009="ssh slave@10.133.202.83"
+alias ate-ott-linux010="ssh slave@10.133.202.84"
+
+alias ate-mis-linux250="ssh slave@10.137.204.39"
+alias ate-wat-linux001="ssh slave@10.43.204.28"
+alias ate-wat-linux002="ssh slave@10.43.204.34"
+alias ate-wat-linux003="ssh slave@10.43.204.52"
+alias ate-wat-linux004="ssh slave@10.43.204.53"
+alias ate-wat-linux005="ssh slave@10.43.204.51"
+alias ate-wat-linux006="ssh slave@10.43.204.36"
+alias ate-wat-linux007="ssh slave@10.43.204.58"
+alias ate-wat-linux008="ssh slave@10.43.204.59"
+alias ate-wat-linux009="ssh slave@10.43.204.106"
+alias ate-wat-linux010="ssh slave@10.43.204.55"
+alias ate-wat-linux300="ssh slave@10.43.35.123"
+
+alias slave4450="ssh slave@10.222.64.170"
+alias slave4452="ssh slave@10.222.64.109"
+alias slave4453="ssh slave@10.222.64.108"
+alias slave1640315="ssh slave@10.133.29.135"
+alias lab1="ssh slave@10.133.202.153"
+alias lab2="ssh slave@10.133.202.154"
+alias lab3="ssh slave@10.133.202.155"
+alias lab4="ssh cfs@10.133.202.158"
+alias lab5="ssh slave@10.133.202.85"
+alias lab6="ssh slave@10.133.202.81"
+alias labprecommit="ssh slave@10.133.202.169"
+alias labprecommit_sc="ssh slave@10.133.202.156"
+alias labprofile="ssh ubuntu@10.133.202.157"
+alias labml1="ssh slave@10.137.205.163"
+alias labml2="ssh slave@10.137.205.161"
