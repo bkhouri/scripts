@@ -1,3 +1,16 @@
+
+alias cdgit="cd ${HOME}/Documents/git"
+alias ls="ls -G"
+alias ll="ls -alG"
+
+alias grep="grep --color=auto"           # show differences in color
+alias egrep="egrep --color=auto"         # show differences in color
+alias fgrep="fgrep --color=auto"         # show differences in color
+
+
+
+
+
 #alias screwyouit='curl --proxy-user bkhouri:ScrewYouIT --user bkhouri:ScrewYouIT --url http://www.google.com'
 alias screwyouit='wget --http-user bkhouri --http-password screwyouit http://www.google.com && rm index.html'
 #alias killtest='adb root && adb wait-for-device && adb shell kill $(adb shell ps | grep test | awk "{print $2}")'
