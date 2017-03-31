@@ -14,7 +14,7 @@ export PORT_HEIMDALLR_REPL=4009
 export PORT_APOLLO_REPL=4080
 
 parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(git::\1)/'
 }
 
 parse_svn_branch() {
