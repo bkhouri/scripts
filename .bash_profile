@@ -17,11 +17,19 @@ parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
+parse_svn_branch() {
+  #parse_svn_url | sed -e s#^"$(parse_svn_repository_root)"##g | awk {print " (svn::"$1")" }
+  branch=$(svn info 2>/dev/null | grep '^URL:' | egrep -o '(tags|branches)/[^/]+|trunk' | egrep -o '[^/]+$')
+  if [ -n "${branch}" ] ; then
+    echo "(svn::${branch})"
+  fi
+}
 
 #export PS1="\n\[$(tput bold)\]\[$(tput setaf 6)\]\t \[$(tput setaf 2)\]\[$(tput setaf 3)\]\[$(tput setaf 2)\]\w\[$(tput setaf 1)\]\$(__git_ps1) \[$(tput sgr0)\]\n\$ "
 #export PS1="\[\e]0;\W\a\]\n\[$(tput setaf 6)\]\t \[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\] \[\033[32m\]\$(__git_ps1)\[\033[00m\] \n\$ "
 #export PS1="\[\e]0;\W\a\]\n\[$(tput setaf 6)\]\t \[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\] \[\033[32m\]\$(__git_ps1)\[\033[00m\] \n\`if [ \$? = 0 ]; then echo \[\e[33m\]\$\[\e[0m\]; else echo \[\e[31m\]\$\[\e[0m\]; fi\` "
-export PS1="\[\e]0;\W\a\]\n\[$(tput setaf 6)\]\t \[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\] \[\033[32m\]\$(parse_git_branch)\[\033[00m\] \n\`if [ \$? = 0 ]; then echo \[\e[33m\]\$\[\e[0m\]; else echo \[\e[31m\]\$\[\e[0m\]; fi\` "
+#export PS1="\[\e]0;\W\a\]\n\[$(tput setaf 6)\]\t \[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\] \[\033[32m\]\$(parse_git_branch)\[\033[00m\] \n\`if [ \$? = 0 ]; then echo \[\e[33m\]\$\[\e[0m\]; else echo \[\e[31m\]\$\[\e[0m\]; fi\` "
+export PS1="\[\e]0;\W\a\]\n\[$(tput setaf 6)\]\t \[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\] \[\033[32m\]\$(parse_svn_branch)\$(parse_git_branch)\[\033[00m\] \n\`if [ \$? = 0 ]; then echo \[\e[33m\]\$\[\e[0m\]; else echo \[\e[31m\]\$\[\e[0m\]; fi\` "
 
 
 #export PGHOST=localhost;
@@ -46,26 +54,6 @@ if [ -f ${GIT_COMPLETION_FILE} ] ; then
 fi
 
 
-function dminit() {
-    echo "Initiallizing docker machine name $1"
-    eval $(docker-machine env $1)
-    export DOCKER_MACHINE_IP="$(docker-machine ip $DOCKER_MACHINE_NAME)"
-}
-
-
-function dmstart () {
-    dmName=$1
-    if docker-machine start "$@"
-    then
-        dminit ${dmName}; # sets DOCKER_MACHINE_NAME et al
-    fi
-}
-
-function dmstop () {
-  docker-machine stop "$DOCKER_MACHINE_NAME"
-}
-
-
 function getAbsolutePath() {
     if [ -n "$1" ] ; then
         LOCAL_VARIABLE="${1}" && echo $(cd $(dirname "$LOCAL_VARIABLE") && pwd -P)/$(basename "$LOCAL_VARIABLE")
@@ -85,6 +73,25 @@ function ctx_home() {
 function crtx_home() {
    ctx_home $@
 }
+function dminit() {
+    echo "Initiallizing docker machine name $1"
+    eval $(docker-machine env $1)
+    export DOCKER_MACHINE_IP="$(docker-machine ip $DOCKER_MACHINE_NAME)"
+}
+
+
+function dmstart () {
+    dmName=$1
+    if docker-machine start "$@"
+    then
+        dminit ${dmName}; # sets DOCKER_MACHINE_NAME et al
+    fi
+}
+
+function dmstop () {
+  docker-machine stop "$DOCKER_MACHINE_NAME"
+}
+
 
 
 
