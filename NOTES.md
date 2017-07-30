@@ -9,6 +9,7 @@ tutorial when it comes to posting the changes for review, git-svn, etc...
 * [Git Start with GitHub](https://www.udemy.com/git-started-with-github/) - Udemy.com course
 * [Try Git: Git Tutorial](https://try.github.io/levels/1/challenges/1) -
 * [Git Tower](https://www.git-tower.com/learn/) -
+* [Git From the Inside out](https://codewords.recurse.com/issues/two/git-from-the-inside-out) - 
 
 ## Using GIT frontend with an SVN backend
 1. Install git by following instructions on https://git-scm.com/
