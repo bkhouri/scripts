@@ -71,3 +71,35 @@ If you encounter a problem similar to
 It means the git-svn option is not installed on your system. Search the internet for instructions on how to install 
 it for your current OS. [This stackoverflow](https://stackoverflow.com/questions/527037/git-svn-not-a-git-command)
  post might be a good starting point
+
+
+# Resources
+## Slack Teams
+
+* http://devolio-devchat.slack.com
+* http://robotframework.slack.com
+
+## Chrome Extensions
+
+* [PushBullet](https://chrome.google.com/webstore/detail/pushbullet/chlffgpmiacpedhhbkiomidkjlcfhogd?hl=en-GB)
+* [The Great Suspender](https://chrome.google.com/webstore/detail/the-great-suspender/klbibkeccnjlkjkiokjodocebajanakg?hl=en-GB)
+* [RSS Feed Reader](https://chrome.google.com/webstore/detail/rss-feed-reader/pnjaodmkngahhkoihejjehlcdlnohgmp?hl=en-GB)
+* [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en-GB)
+* [Signal Private Messenger](https://chrome.google.com/webstore/detail/signal-private-messenger/bikioccmkafdpakkkcpdbppfkghcmihk?hl=en-GB)
+* [Advanced REST client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo?hl=en-GB)
+ 
+## Useful Applications
+* Google Chrome
+* Google Drive
+* Dropbox
+* 1Password
+* Spotify
+* Evernote
+* WhatsApp web
+
+
+## Windows Tools
+
+* [cmder](http://cmder.net/) - Portable console emulator for Windows
+
+ 
