@@ -74,6 +74,12 @@ it for your current OS. [This stackoverflow](https://stackoverflow.com/questions
 
 
 # Resources
+
+## XPath 
+* [W3 school XPath Tutorial](ttps://www.w3schools.com/xml/xpath_intro.asp)
+* [W3C XML Path Language](https://www.w3.org/TR/xpath/)
+* [MSDN XPath example](https://msdn.microsoft.com/en-us/library/ms256086(v=vs.110).aspx)
+
 ## Slack Teams
 
 * http://devolio-devchat.slack.com
