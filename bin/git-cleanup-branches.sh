@@ -115,7 +115,6 @@ for branch in ${ALL_BRANCHES}
 do
 
     CMD="git push ${REMOTE_NAME} --delete ${branch}"
-#    CMD="echo \"#Delete Branch ${branch}\""
     if [ -z ${DELETE} ] ; then
         CMD="echo \"would executed: ${CMD}\""
     else
