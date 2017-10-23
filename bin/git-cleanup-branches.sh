@@ -1,3 +1,17 @@
+# Copyright Year 2017
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 #!/bin/bash
 
 BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -58,38 +72,25 @@ git fetch
 BRANCHES_TO_KEEP="${BRANCHES_TO_KEEP}"
 
 echo "BRANCHES TO KEEP: ${BRANCHES_TO_KEEP}"
-echo "SHOULD DELETE: ${DELETE}"
 
 IGNORE_BRANCHES=""
 for branch in ${BRANCHES_TO_KEEP}
 do
     IGNORE_BRANCHES="${IGNORE_BRANCHES} | grep -v ${REMOTE_NAME}/$branch"
 done
-echo "TODO >>> Need to filter branches"
-echo "git branch -r | grep -v HEAD ${IGNORE_BRANCHES}"
-CMD=$(echo "git branch -r | grep -v HEAD ${IGNORE_BRANCHES}")
-echo "CMD is: ${CMD}"
 
 echo "Getting all branches"
+CMD=$(echo "git branch -r | grep -v HEAD ${IGNORE_BRANCHES}")
 ALL_BRANCHES=$(eval ${CMD})
+echo Branches: ${ALL_BRANCHES}
 
-echo "All Branches"
-echo ${ALL_BRANCHES}
-
-echo ""
-echo ""
-echo ""
-echo ""
-echo ""
-echo "****** TODO:  Remote UNSETTING THE DELETE argument.  DELETE was unset until the list of all branches is working"
-unset DELETE
-echo ""
-echo ""
-echo ""
 echo ""
 echo ""
 if [ -z ${DELETE} ] ; then
-    echo "**** We are doing a dryrun"
+    read -p "**** We are doing a dryrun.  Press any key to continue." -n 1 -r
+    echo ""
+    echo ""
+    # echo "**** We are doing a dryrun"
 else
     echo "**********************************************************"
     echo "*  !!!!! W A R N I N G !!!!!  !!!!! W A R N I N G !!!!!  *"
@@ -108,7 +109,6 @@ else
     fi
 
 fi
-
 
 
 for branch in ${ALL_BRANCHES}
