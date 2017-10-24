@@ -96,10 +96,15 @@ else
     echo "*  !!!!! W A R N I N G !!!!!  !!!!! W A R N I N G !!!!!  *"
     echo "**********************************************************"
     echo ""
-    echo "Remote branches will be deleted from the remote repository. This action is irrevocable.  Run in "
-    echo "mode 'dryrun' first."
+    echo "The following remote branches will be removed frm the remote repository"
+    for branch in ${ALL_BRANCHES}
+    do
+        echo "  - ${branch}"
+    done
+    echo "The remote branches listed above will be deleted from the remote repository.  "
+    echo "Run in mode 'dryrun' first."
     echo ""
-    read -p "Are you sure you want to continue? [y/N]" -n 1 -r
+    read -p "This action is irrevocable.  Are you sure you want to continue? [y/N]" -n 1 -r
     echo    # (optional) move to a new line
     if [[ ! $REPLY =~ ^[Yy]$ ]]
     then
@@ -109,7 +114,6 @@ else
     fi
 
 fi
-
 
 for branch in ${ALL_BRANCHES}
 do
