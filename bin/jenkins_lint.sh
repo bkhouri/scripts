@@ -67,7 +67,8 @@ if [ ! -f "${JENKINS_FILE}" ] ; then
     exit 0
 fi
 
-JENKINS_CRUMB=`curl --silent "$JENKINS_URL/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)"`
+echo "Requesting Jenkins crumb..."
 set -x
+JENKINS_CRUMB=`curl --silent "$JENKINS_URL/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)"`
 curl -X POST -H $JENKINS_CRUMB -F "jenkinsfile=<$JENKINS_FILE" $JENKINS_URL/pipeline-model-converter/validate
 set +x
