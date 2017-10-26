@@ -30,7 +30,7 @@ function printUsage() {
     echo "   --delete            If specified, deletes the remote branches, otherwise just does a DRYRUN"
     echo ""
     echo "Arguments"
-    echo "   --  [BRANCH [ BRANCH [...]]]  Specifies the list (space delimited) of git remote branches to delete"
+    echo "   --  [BRANCH [ BRANCH [...]]]  Specifies the list (space delimited) of git remote branches to keep"
     echo "                                 on the remote repository "
     echo "                                 (Default: ${BRANCHES_TO_KEEP})"
     echo ""
