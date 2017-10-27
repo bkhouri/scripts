@@ -68,7 +68,7 @@ do
 done
 
 
-git fetch
+git fetch --prune
 
 BRANCHES_TO_KEEP="${BRANCHES_TO_KEEP}"
 
