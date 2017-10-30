@@ -118,7 +118,7 @@ fi
 
 for branch in ${ALL_BRANCHES}
 do
-
+    branch=${branch#$REMOTE_NAME/}
     CMD="git push ${REMOTE_NAME} --delete ${branch}"
     if [ -z ${DELETE} ] ; then
         CMD="echo \"would executed: ${CMD}\""
