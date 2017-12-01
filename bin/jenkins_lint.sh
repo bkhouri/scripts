@@ -45,7 +45,7 @@ do
             ;;
         --jenkinsfile)
             shift # past argument
-            JENKINS_FILE=true
+            JENKINS_FILE=$1
             shift
             ;;
         -h|--help)
