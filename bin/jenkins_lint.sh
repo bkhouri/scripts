@@ -15,60 +15,12 @@
 # limitations under the License.
 
 
-# https://jenkins.io/doc/book/pipeline/development/#linter
-JENKINS_URL="http://jenkins.cenx.localnet:10080"
-JENKINS_FILE="Jenkinsfile"
+JFLINT=$(which jflint)
 
-
-BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-function printUsage() {
-    echo ""
-    echo "Validates the Jenkinsfile"
-    echo ""
-    echo "${0} [OPTIONS] [ARGS]"
-    echo ""
-    echo "Options:"
-    echo "   -h|--help              Print the help usage"
-    echo "   --url URL              The Jenkins URL (Default: ${JENKINS_URL})"
-    echo "   --jekinsfile FILENAME  The Jenkinsfile to validate (Default: ${JENKINS_FILE})"
-    echo ""
-}
-
-while [[ $# > 0 ]]
-do
-    case $1 in
-        --url)
-            shift
-            JENKINS_URL=$1
-            shift
-            ;;
-        --jenkinsfile)
-            shift # past argument
-            JENKINS_FILE=$1
-            shift
-            ;;
-        -h|--help)
-            printUsage
-            exit 0
-            ;;
-        *)
-            # unknown option
-            echo "Unknown Option: $1"
-            printUsage
-            exit 1
-            ;;
-    esac
-done
-
-
-if [ ! -f "${JENKINS_FILE}" ] ; then
-    echo "The provide Jenkinsfile (${JENKINS_FILE}) does not exist.  Exiting..."
-    exit 0
+if [ -z "${JFLINT}" ] ; then
+    echo "Have a look at jflint found here: https://www.npmjs.com/package/jflint"
+    exit 1
+else
+    echo "Calling jflint"
+    ${JFLINT} "$@"
 fi
-
-echo "Requesting Jenkins crumb..."
-set -x
-JENKINS_CRUMB=`curl --silent "$JENKINS_URL/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)"`
-curl -X POST -H $JENKINS_CRUMB -F "jenkinsfile=<$JENKINS_FILE" $JENKINS_URL/pipeline-model-converter/validate
-set +x
