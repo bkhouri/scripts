@@ -1,5 +1,9 @@
 BASH_ALIAS_FILE=${HOME}/.bash_alias
 GIT_COMPLETION_FILE=~/.git-completion.bash
+PROMPT_FILE=~/.prompt.bash
+
+HISTTIMEFORMAT='%F %T  '
+HISTSIZE=1000000
 
 export ORCA_VERSION=1.x-latest
 export ROBOT_LOCAL_DEPLOYMENTS_DIR=${HOME}/Documents/CENX/deployments
@@ -19,6 +23,7 @@ export PORT_NARANATHU_REPL=4015
 export PORT_HEIMDALLR_REPL=4009
 export PORT_APOLLO_REPL=4080
 
+
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
@@ -30,6 +35,10 @@ parse_svn_branch() {
     echo "(svn::${branch})"
   fi
 }
+
+if [ -f "${PROMPT_FILE}" ] ; then
+    source ${PROMPT_FILE}
+fi
 
 #export PS1="\n\[$(tput bold)\]\[$(tput setaf 6)\]\t \[$(tput setaf 2)\]\[$(tput setaf 3)\]\[$(tput setaf 2)\]\w\[$(tput setaf 1)\]\$(__git_ps1) \[$(tput sgr0)\]\n\$ "
 #export PS1="\[\e]0;\W\a\]\n\[$(tput setaf 6)\]\t \[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\] \[\033[32m\]\$(__git_ps1)\[\033[00m\] \n\$ "
@@ -57,15 +66,18 @@ function __setup_prompt() {
     # PS1_DEFAULT="${Blu}\[$(tput setaf 6)\]\t "
     # add timestamp
     PS1="${Cya}\t ${RCol}"
+    PS1+="[\!] "
 
     # Add previous terminal command error code to prompt if necessary
     PS1+="\`retCode=\$?; if [ \${retCode} -ne 0 ]; then echo \"${BIRed}ErrorCode:\${retCode}${RCol} \";fi\`"
 
-
     PS1+="${Gre}\u@\h "             # display username and host name
     PS1+="${Yel}\w${RCol}"          # display full pwd
-    # Display verion control information
-    PS1+=" ${Gre}\$(parse_svn_branch)\$(parse_git_branch)${RCol} "
+    # Display version control information
+    PS1+=" ${Gre}\$(parse_svn_branch)${RCol}"
+    PS1+="${Gre}\$(parse_git_branch)${RCol}"
+
+    # Display a new line
     PS1+="\n"
 
     # indicate if we are running as user root
