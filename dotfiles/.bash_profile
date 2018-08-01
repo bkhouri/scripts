@@ -36,9 +36,9 @@ parse_svn_branch() {
   fi
 }
 
-if [ -f "${PROMPT_FILE}" ] ; then
-    source ${PROMPT_FILE}
-fi
+#if [ -f "${PROMPT_FILE}" ] ; then
+#    source ${PROMPT_FILE}
+#fi
 
 #export PS1="\n\[$(tput bold)\]\[$(tput setaf 6)\]\t \[$(tput setaf 2)\]\[$(tput setaf 3)\]\[$(tput setaf 2)\]\w\[$(tput setaf 1)\]\$(__git_ps1) \[$(tput sgr0)\]\n\$ "
 #export PS1="\[\e]0;\W\a\]\n\[$(tput setaf 6)\]\t \[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\] \[\033[32m\]\$(__git_ps1)\[\033[00m\] \n\$ "
