@@ -16,7 +16,7 @@
 
 BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-BRANCHES_TO_KEEP="integration master"
+BRANCHES_TO_KEEP="integration master develop"
 REMOTE_NAME=origin
 function printUsage() {
     echo ""
@@ -121,14 +121,12 @@ do
     branch=${branch#$REMOTE_NAME/}
     CMD="git push ${REMOTE_NAME} --delete ${branch}"
     if [ -z ${DELETE} ] ; then
-        CMD="echo \"would executed: ${CMD}\""
+        echo "would executed: ${CMD}"
     else
+        # Run the command to cleanup the remote branch
         set -x
+        eval ${CMD}
+        set +x
     fi
-
-    # Run the command
-    eval ${CMD}
-
-    [ -n "$DELETE" ] && set +x
 
 done
